@@ -5,9 +5,10 @@
 package mop
 
 import (
-	`github.com/michaeldv/termbox-go`
-	`strings`
-	`time`
+	"strings"
+	"time"
+
+	termbox "github.com/michaeldv/termbox-go"
 )
 
 // Screen is thin wrapper aroung Termbox library to provide basic display
@@ -87,8 +88,9 @@ func (screen *Screen) ClearLine(x int, y int) *Screen {
 // market data, stock quotes, current time, and an arbitrary string.
 func (screen *Screen) Draw(objects ...interface{}) *Screen {
 	if screen.pausedAt != nil {
-		defer screen.DrawLine(0, 0, `<right><r>`+screen.pausedAt.Format(`3:04:05pm PST`)+`</r></right>`)
+		defer screen.DrawLine(0, 0, `<right><r>`+screen.pausedAt.Format(`3:04:05pm CST`)+`</r></right>`)
 	}
+
 	for _, ptr := range objects {
 		switch ptr.(type) {
 		case *Market:
@@ -98,8 +100,8 @@ func (screen *Screen) Draw(objects ...interface{}) *Screen {
 			object := ptr.(*Quotes)
 			screen.draw(screen.layout.Quotes(object.Fetch()))
 		case time.Time:
-			timestamp := ptr.(time.Time).Format(`3:04:05pm PST`)
-			screen.DrawLine(0, 0, `<right>`+timestamp+`</right>`)
+			timestamp := ptr.(time.Time).Format(`3:04:05pm CST`)
+			screen.DrawLine(0, 0, `<blue><b>Powered by Barchart OnDemand</b></blue><right>`+timestamp+`</right>`)
 		default:
 			screen.draw(ptr.(string))
 		}
@@ -140,6 +142,6 @@ func (screen *Screen) draw(str string) {
 		screen.Clear()
 	}
 	for row, line := range strings.Split(str, "\n") {
-		screen.DrawLine(0, row, line)
+		screen.DrawLine(0, row+1, line)
 	}
 }

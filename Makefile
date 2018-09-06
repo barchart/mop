@@ -1,9 +1,10 @@
 # Copyright (c) 2013-2016 by Michael Dvorkin. All Rights Reserved.
+# Copyright (c) 2018 by Barchart. All Rights Reserved.
 # Use of this source code is governed by a MIT-style license that can
 # be found in the LICENSE file.
 
 VERSION = 0.2.0
-PACKAGE = github.com/michaeldv/mop/cmd/mop
+PACKAGE = github.com/barchart/mop/cmd/mop
 
 run:
 	go run ./cmd/mop/main.go

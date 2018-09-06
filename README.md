@@ -1,49 +1,78 @@
-### Mop: track stocks the hacker way ###
+# Mop: track stocks the hacker way
+
 Mop is a command-line utility that displays continuous up-to-date
-information about the U.S. markets and individual stocks. One
-screenshot is worth a thousand words:
+information about the U.S. markets, commodities, ETFs, individual stocks and more. 
+
+One screenshot is worth a thousand words:
 
 ![Screenshot](https://raw.githubusercontent.com/mop-tracker/mop/master/doc/screenshot.png "Mop Screenshot")
 
-### Installing Mop ###
-Mop is implemented in Go and compiles down to a single executable file.
+## Market Data powered by Barchart OnDemand.
 
-    # Make sure your $GOPATH is set.
-    $ go get github.com/michaeldv/mop
-    $ cd $GOPATH/src/github.com/michaeldv/mop
-    $ make            # <-- Compile and run mop.
-    $ make build      # <-- Build mop in current directory.
-    $ make install    # <-- Build mop and install it in $GOPATH/bin.
+Get your FREE API Key: https://www.barchart.com/ondemand/free-market-data-api
 
+### Installing
+
+* Windows: 
+* Mac: 
+* Linux: 
 
 ### Using Mop ###
+
+To run open a terminal and:
+
+Note: if you are using a free API key you must pass the `--sandbox=false` flag.
+
+`mop --key=YOUR_API_KEY --sandbox=false`
+
+You can request a free Barchart OnDemand API from here: https://www.barchart.com/ondemand/free-market-data-api
+
 For demonstartion purposes Mop comes preconfigured with a number of
 stock tickers. You can easily change the default list by using the
 following keyboard commands:
 
-    +       Add stocks to the list.
-    -       Remove stocks from the list.
-    o       Change column sort order.
-    g       Group stocks by advancing/declining issues.
-    ?       Display help screen.
-    esc     Quit mop.
+```
++       Add stocks to the list.
+-       Remove stocks from the list.
+o       Change column sort order.
+g       Group stocks by advancing/declining issues.
+?       Display help screen.
+esc     Quit mop.
+ ```
 
 When prompted please enter comma-delimited list of stock tickers. The
 list and other settings are stored in ``.moprc`` file in your ``$HOME``
 directory.
 
 
+### Building Mop ###
+
+Mop is implemented in Go and compiles down to a single executable file.
+
+Install Go 1.11
+
+```
+$ git clone git@github.com:barchart/mop.git
+$ cd mop
+$ make            # <-- Compile and run mop.
+$ make build      # <-- Build mop in current directory.
+$ make install    # <-- Build mop and install it in $GOPATH/bin.
+```
+
 ### Contributing ###
-Mop is my personal project I came up with to learn Go programming. Your
-comments, suggestions, and contributions are welcome.
+
+This is a fork of: https://github.com/mop-tracker/mop
 
 * Fork the project on Github.
 * Make your feature addition or bug fix.
 * Commit, do not change program version, or commit history.
-* Email me commit URL (*do not* send pull requests).
 
 
 ### License ###
+
+Copyright (c) 2018 Barchart. All Rights Reserved.
+github.com/barchart
+
 Copyright (c) 2013-2016 Michael Dvorkin. All Rights Reserved.
 "mike" + "@dvorkin" + ".net" || "twitter.com/mid"
 

@@ -5,9 +5,10 @@
 package mop
 
 import (
-	`github.com/michaeldv/termbox-go`
-	`regexp`
-	`strings`
+	"regexp"
+	"strings"
+
+	termbox "github.com/michaeldv/termbox-go"
 )
 
 // Markup implements some minimalistic text formatting conventions that

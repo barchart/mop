@@ -5,9 +5,14 @@
 package main
 
 import (
-	`github.com/mop-tracker/mop`
-	`github.com/michaeldv/termbox-go`
-	`time`
+	"flag"
+	"log"
+	"time"
+
+	termbox "github.com/michaeldv/termbox-go"
+	"github.com/mvberg/mop"
+
+	od "github.com/barchart/barchart-ondemand-client-golang"
 )
 
 const help = `Mop v0.2.0 -- Copyright (c) 2013-2016 by Michael Dvorkin. All Rights Reserved.
@@ -29,7 +34,7 @@ Enter comma-delimited list of stock tickers when prompted.
 `
 
 //-----------------------------------------------------------------------------
-func mainLoop(screen *mop.Screen, profile *mop.Profile) {
+func mainLoop(screen *mop.Screen, profile *mop.Profile, apiKey string, sandbox bool) {
 	var lineEditor *mop.LineEditor
 	var columnEditor *mop.ColumnEditor
 
@@ -46,7 +51,13 @@ func mainLoop(screen *mop.Screen, profile *mop.Profile) {
 		}
 	}()
 
-	market := mop.NewMarket()
+	onDemand := od.New(apiKey, false)
+
+	if sandbox == true {
+		onDemand.BaseURL = "https://marketdata.websol.barchart.com"
+	}
+
+	market := mop.NewMarket(onDemand)
 	quotes := mop.NewQuotes(market, profile)
 	screen.Draw(market, quotes)
 
@@ -119,6 +130,15 @@ func main() {
 	screen := mop.NewScreen()
 	defer screen.Close()
 
+	apiKey := flag.String("key", "", "OnDemand API Key")
+	sandbox := flag.Bool("sandbox", false, "Set to true if using Free API")
+
+	flag.Parse()
+
+	if len(*apiKey) == 0 {
+		log.Panic("You must set your API key: -key=YOUR_KEY")
+	}
+
 	profile := mop.NewProfile()
-	mainLoop(screen, profile)
+	mainLoop(screen, profile, *apiKey, *sandbox)
 }

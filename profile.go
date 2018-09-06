@@ -5,10 +5,10 @@
 package mop
 
 import (
-	`encoding/json`
-	`io/ioutil`
-	`os/user`
-	`sort`
+	"encoding/json"
+	"io/ioutil"
+	"os/user"
+	"sort"
 )
 
 // File name in user's home directory where we store the settings.
@@ -34,9 +34,9 @@ func NewProfile() *Profile {
 	data, err := ioutil.ReadFile(profile.defaultFileName())
 	if err != nil { // Set default values:
 		profile.MarketRefresh = 12 // Market data gets fetched every 12s (5 times per minute).
-		profile.QuotesRefresh = 5  // Stock quotes get updated every 5s (12 times per minute).
+		profile.QuotesRefresh = 15 // Stock quotes get updated every 15s (4 times per minute).
 		profile.Grouped = false    // Stock quotes are *not* grouped by advancing/declining.
-		profile.Tickers = []string{`AAPL`, `C`, `GOOG`, `IBM`, `KO`, `ORCL`, `V`}
+		profile.Tickers = []string{`AAPL`, `C`, `GOOG`, `IBM`, `NEM`, `TSLA`, `ZC*0`, `ZS*0`, `^BTCUSD`}
 		profile.SortColumn = 0   // Stock quotes are sorted by ticker name.
 		profile.Ascending = true // A to Z.
 		profile.Save()

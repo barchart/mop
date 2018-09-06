@@ -5,9 +5,10 @@
 package mop
 
 import (
-	`github.com/michaeldv/termbox-go`
-	`regexp`
-	`strings`
+	"regexp"
+	"strings"
+
+	termbox "github.com/michaeldv/termbox-go"
 )
 
 // LineEditor kicks in when user presses '+' or '-' to add or delete stock
@@ -42,8 +43,8 @@ func (editor *LineEditor) Prompt(command rune) *LineEditor {
 		editor.prompt = prompt
 		editor.command = command
 
-		editor.screen.DrawLine(0, 3, `<white>`+editor.prompt+`</>`)
-		termbox.SetCursor(len(editor.prompt), 3)
+		editor.screen.DrawLine(0, 4, `<white>`+editor.prompt+`</>`)
+		termbox.SetCursor(len(editor.prompt), 4)
 		termbox.Flush()
 	}
 
@@ -102,7 +103,7 @@ func (editor *LineEditor) deletePreviousCharacter() *LineEditor {
 			// Remove last input character.
 			editor.input = editor.input[:len(editor.input)-1]
 		}
-		editor.screen.DrawLine(len(editor.prompt), 3, editor.input+` `) // Erase last character.
+		editor.screen.DrawLine(len(editor.prompt), 4, editor.input+` `) // Erase last character.
 		editor.moveLeft()
 	}
 
@@ -118,7 +119,7 @@ func (editor *LineEditor) insertCharacter(ch rune) *LineEditor {
 		// Append the character to the end of the input string.
 		editor.input += string(ch)
 	}
-	editor.screen.DrawLine(len(editor.prompt), 3, editor.input)
+	editor.screen.DrawLine(len(editor.prompt), 4, editor.input)
 	editor.moveRight()
 
 	return editor
@@ -128,7 +129,7 @@ func (editor *LineEditor) insertCharacter(ch rune) *LineEditor {
 func (editor *LineEditor) moveLeft() *LineEditor {
 	if editor.cursor > 0 {
 		editor.cursor--
-		termbox.SetCursor(len(editor.prompt)+editor.cursor, 3)
+		termbox.SetCursor(len(editor.prompt)+editor.cursor, 4)
 	}
 
 	return editor
@@ -138,7 +139,7 @@ func (editor *LineEditor) moveLeft() *LineEditor {
 func (editor *LineEditor) moveRight() *LineEditor {
 	if editor.cursor < len(editor.input) {
 		editor.cursor++
-		termbox.SetCursor(len(editor.prompt)+editor.cursor, 3)
+		termbox.SetCursor(len(editor.prompt)+editor.cursor, 4)
 	}
 
 	return editor
@@ -147,7 +148,7 @@ func (editor *LineEditor) moveRight() *LineEditor {
 //-----------------------------------------------------------------------------
 func (editor *LineEditor) jumpToBeginning() *LineEditor {
 	editor.cursor = 0
-	termbox.SetCursor(len(editor.prompt)+editor.cursor, 3)
+	termbox.SetCursor(len(editor.prompt)+editor.cursor, 4)
 
 	return editor
 }
@@ -155,7 +156,7 @@ func (editor *LineEditor) jumpToBeginning() *LineEditor {
 //-----------------------------------------------------------------------------
 func (editor *LineEditor) jumpToEnd() *LineEditor {
 	editor.cursor = len(editor.input)
-	termbox.SetCursor(len(editor.prompt)+editor.cursor, 3)
+	termbox.SetCursor(len(editor.prompt)+editor.cursor, 4)
 
 	return editor
 }
@@ -191,7 +192,7 @@ func (editor *LineEditor) execute() *LineEditor {
 
 //-----------------------------------------------------------------------------
 func (editor *LineEditor) done() bool {
-	editor.screen.ClearLine(0, 3)
+	editor.screen.ClearLine(0, 4)
 	termbox.HideCursor()
 
 	return true

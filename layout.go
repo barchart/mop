@@ -5,13 +5,13 @@
 package mop
 
 import (
-	`bytes`
-	`fmt`
-	`reflect`
-	`regexp`
-	`strings`
-	`text/template`
-	`time`
+	"bytes"
+	"fmt"
+	"reflect"
+	"regexp"
+	"strings"
+	"text/template"
+	"time"
 )
 
 // Column describes formatting rules for individual column within the list
@@ -89,7 +89,7 @@ func (layout *Layout) Quotes(quotes *Quotes) string {
 		Header string  // Formatted header line.
 		Stocks []Stock // List of formatted stock quotes.
 	}{
-		time.Now().Format(`3:04:05pm PST`),
+		"As of " + time.Now().Format(`3:04:05pm CST`),
 		layout.Header(quotes.profile),
 		layout.prettify(quotes),
 	}
@@ -274,8 +274,9 @@ func last(str string) string {
 
 //-----------------------------------------------------------------------------
 func currency(str string) string {
-	if str == `N/A` {
+	if str == `N/A` || len(str) == 0 {
 		return `-`
+
 	}
 	if sign := str[0:1]; sign == `+` || sign == `-` {
 		return sign + `$` + str[1:]
