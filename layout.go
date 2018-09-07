@@ -207,7 +207,7 @@ func buildQuotesTemplate() *template.Template {
 //-----------------------------------------------------------------------------
 func highlight(collections ...map[string]string) {
 	for _, collection := range collections {
-		if collection[`change`][0:1] != `-` {
+		if len(collection[`change`]) > 0 && collection[`change`][0:1] != `-` {
 			collection[`change`] = `<green>` + collection[`change`] + `</>`
 		}
 	}

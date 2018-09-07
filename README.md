@@ -3,11 +3,11 @@
 Mop is a command-line utility that displays continuous up-to-date
 information about the U.S. markets, commodities, ETFs, individual stocks and more. 
 
-One screenshot is worth a thousand words:
+![Screenshot](./doc/screenshot.png "Mop Screenshot")
 
-![Screenshot](https://raw.githubusercontent.com/mop-tracker/mop/master/doc/screenshot.png "Mop Screenshot")
+## Market Data now powered by Barchart OnDemand!
 
-## Market Data powered by Barchart OnDemand.
+![Screenshot](./doc/mop-barchart.gif "Mop Screenshot")
 
 Get your FREE API Key: https://www.barchart.com/ondemand/free-market-data-api
 

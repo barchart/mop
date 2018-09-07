@@ -8,7 +8,9 @@ import (
 )
 
 func Test(t *testing.T) {
-	m := NewMarket(od.New("API_KEY", false))
+	od := od.New("FREE_API_KEY", false)
+	od.BaseURL = "https://marketdata.websol.barchart.com/"
+	m := NewMarket(od)
 
 	fmt.Println("MM", m.Fetch())
 }

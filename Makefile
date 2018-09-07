@@ -3,8 +3,8 @@
 # Use of this source code is governed by a MIT-style license that can
 # be found in the LICENSE file.
 
-VERSION = 0.2.0
-PACKAGE = github.com/barchart/mop/cmd/mop
+VERSION = 1.0.0
+PACKAGE = github.com/mvberg/mop/cmd/mop
 
 run:
 	go run ./cmd/mop/main.go

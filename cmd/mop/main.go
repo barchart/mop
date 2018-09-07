@@ -54,7 +54,7 @@ func mainLoop(screen *mop.Screen, profile *mop.Profile, apiKey string, sandbox b
 	onDemand := od.New(apiKey, false)
 
 	if sandbox == true {
-		onDemand.BaseURL = "https://marketdata.websol.barchart.com"
+		onDemand.BaseURL = "https://marketdata.websol.barchart.com/"
 	}
 
 	market := mop.NewMarket(onDemand)
