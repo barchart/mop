@@ -13,17 +13,17 @@ Get your FREE API Key: https://www.barchart.com/ondemand/free-market-data-api
 
 ### Installing
 
-* Windows: 
-* Mac: 
-* Linux: 
+* Windows: https://github.com/barchart/mop/releases/download/1.0.0/mop-1.0.0-windows-64.exe
+* Mac: https://github.com/barchart/mop/releases/download/1.0.0/mop-1.0.0-osx-64
+* Linux: https://github.com/barchart/mop/releases/download/1.0.0/mop-1.0.0-linux-64
 
 ### Using Mop ###
 
 To run open a terminal and:
 
-Note: if you are using a free API key you must pass the `--sandbox=false` flag.
+Note: if you are using a free API key you must pass the `--sandbox` flag.
 
-`mop --key=YOUR_API_KEY --sandbox=false`
+`mop --key=YOUR_API_KEY`
 
 You can request a free Barchart OnDemand API from here: https://www.barchart.com/ondemand/free-market-data-api
 
